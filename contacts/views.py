@@ -21,7 +21,7 @@ def contactView(request):
             contact_message = f'Customer  "{name}" with the email {email} just contacted you and left a message  "{message}" please contact him as soon as possible'
             form.save()
             try:
-                send_mail(subject, contact_message, settings.EMAIL_HOST_USER, ['tuksimadventures@gmail.com'],
+                send_mail(subject, contact_message, settings.EMAIL_HOST_USER, ['panetasafari@gmail.com'],
                           settings.FAIL_SILENTLY)
             except BadHeaderError:
                 return HttpResponse('Invalid Header.')
