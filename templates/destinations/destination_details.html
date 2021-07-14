@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}PanetaSafari Destinations{% endblock title %}
+
+{% load widget_tweaks %}
+{% block body %}
+
+    <div class="destination_banner_wrap overlay">
+        <div class="destination_text text-center">
+            <h3>Paneta</h3>
+            <p>{{ dest.name }}</p>
+        </div>
+    </div>
+
+    <div class="destination_details_info">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-9">
+                    <div class="destination_info">
+                         <div class="container">
+        <div class="row">
+            <div style="padding-top:2%;padding-bottom:2%">
+                                <h6 >Destination: <div style="color: green; font-size: 16;"> {{ dest.name }}</div></h6>
+
+                <h6 >Location: <div style="color: green;">{{ dest.location }}</div></h6>
+                <h6 >Price: <div style="color: green;"> ${{ dest.price }}</div></h6>
+                <h6 >Duration: <div style="color: green;"> {{ dest.duration }}</div></h6>
+
+            </div>
+
+        </div>
+  </div>
+                                    {% autoescape off %}
+                        <p>{{ dest.tour_descr}}</p>
+
+                            {% endautoescape %}
+
+                    </div>
+                    <div class="bordered_1px"></div>
+                    <div class="contact_join">
+                        <h3>Contact for booking</h3>
+                       <form method="post" action="{% url 'destinationlist' %}">
+{% csrf_token %}
+{% if destform.errors %}
+            <span>{{ destform.errors|striptags }}</span>
+        {% endif %}
+  <div class="form-group">
+  <div style="color:green;">  <label for="exampleInputEmail1">Email address</label></div>
+      {% render_field destform.email class="form-control" placeholder="example@example.com"%}
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+   <div style="color:green;"> <label for="exampleInputPassword1">Full name</label></div>
+       {% render_field destform.full_name class="form-control" placeholder="John David Paul"%}
+  </div>
+  <div class="form-group">
+    <div style="color:green;"><label for="exampleInputPassword1">Tour name</label></div>
+     <small id="emailHelp" class="form-text text-muted">Re-type Tour Name to verify your submition  <b><i><u> "{{ dest.name }}"</u></i></b></small>
+      {% render_field destform.tour_name class="form-control"%}
+  </div>
+ <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+     <div style="color:green;"> <label class="mr-sm-2" for="inlineFormCustomSelect">Number of People</label></div>
+        {% render_field destform.quantity class="form-control" placeholder="1"%}
+</div>
+</div>
+  <div class="form-group">
+    <div style="color:green;"><label for="exampleInputPassword1">Message</label></div>
+      {% render_field destform.message class="form-control" placeholder="Hello, I need to make a booking for .........."%}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock body %}

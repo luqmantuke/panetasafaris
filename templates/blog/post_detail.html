@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}PanetaSafari Blog{% endblock title %}
+
+{% block body %}
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_4">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-12">
+                  <div class="bradcam_text text-center">
+                      <h3>Paneta</h3>
+                      <p>{{ post.name }}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--/ bradcam_area  -->
+
+   <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8 posts-list">
+               <div class="single-post">
+                  <div class="feature-img">
+                     <img class="img-fluid" src="{{ post.image.url }}" alt="{{ post.name }}">
+                  </div>
+                  <div class="blog_details">
+                                    {% autoescape off %}
+                        <p>{{ post.body }}</p>
+
+                            {% endautoescape %}
+
+                  </div>
+               </div>
+
+
+
+            </div>
+            <div class="col-lg-4">
+               <div class="blog_right_sidebar">
+
+
+                <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Recent Post</h3>
+                            {% for recent in recent_posts%}
+                            <div class="media post_item">
+                                <img src="{{ recent.image.url }}" alt="{{ recent.name }}">
+                                <div class="media-body">
+                                    <a href="{% url 'post_detail' recent.slug %}">
+                                        <h3>{{ recent.name }}..</h3>
+                                    </a>
+                                    <p>{{ recent.created }}</p>
+                                </div>
+                            </div>
+                       {% endfor %}
+                        </aside>
+                         <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Popular Post</h3>
+                            {% for popular in popular_posts%}
+                            <div class="media post_item">
+                                <img src="{{ popular.image.url }}" alt="{{ popular.name }}">
+                                <div class="media-body">
+                                    <a href="{% url 'post_detail' popular.slug %}">
+                                        <h3>{{ popular.name }}..</h3>
+                                    </a>
+                                    <p>{{ popular.created }}</p>
+                                </div>
+                            </div>
+                       {% endfor %}
+                        </aside>
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--================ Blog Area end =================-->
+
+
+ {% endblock body %}

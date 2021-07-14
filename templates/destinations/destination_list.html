@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}PanetaSafari Destinations{% endblock title %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text text-center">
+                        <h3>Destinations</h3>
+                        <p>Leading Tour Company</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+
+    <div class="popular_places_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="filter_result_wrap">
+                        <h3>Filter Destinations</h3>
+                        <div class="filter_bordered">
+                            <div class="filter_inner">
+                                <div class="row">
+
+ <form action="" method="get">
+                {% csrf_token %}
+
+                               {{ myfilter.form.as_p}}
+                      <div class="check-out col-sm-12 group mb-3">
+                      </div>
+                      <div class="select-wrap col-sm-12 group mb-3">
+
+
+                      </div>
+                </form>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="reset_btn">
+                        <input type="submit" class="search-submit btn btn-primary" value="Find Tour">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row">
+                        {% for dest in dests %}
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single_place">
+                                <div class="thumb">
+                                    <img src="{{ dest.image.url }}" alt="">
+                                    <a href="{% url 'destinationdetails' dest.slug  %}" class="prise">${{ dest.price }}</a>
+                                </div>
+                                <div class="place_info">
+                                    <a href="{% url 'destinationdetails' dest.slug  %}"><h3>{{ dest.name }}</h3></a>
+                                    <p>{{ dest.location }}</p>
+                                    <div class="rating_days d-flex justify-content-between">
+                                      
+                                        <div class="days">
+                                            <i class="fa fa-clock-o"></i>
+                                            <a href="{% url 'destinationdetails' dest.slug  %}">{{ dest.duration }} </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                             <div class="container">
+    <h3 style="text-align: center">Didn't find you tour?</h3>
+    <p style="color:red;">fill the below form with the tour name, number of people and email and we will arrange and contact you shortly through your email.</p>
+
+<form method="post" action="{% url 'destinationlist' %}">
+{% csrf_token %}
+{% if bkform.errors %}
+            <span>{{ bkform.errors|striptags }}</span>
+        {% endif %}
+  <div class="form-group">
+  <div style="color:green;">  <label for="exampleInputEmail1">Email address</label></div>
+      {% render_field bkform.email class="form-control" placeholder="example@example.com"%}
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+   <div style="color:green;"> <label for="exampleInputPassword1">Full name</label></div>
+       {% render_field bkform.full_name class="form-control" placeholder="John David Paul"%}
+  </div>
+  <div class="form-group">
+    <div style="color:green;"><label for="exampleInputPassword1">Tour name</label></div>
+      {% render_field bkform.tour_name class="form-control" placeholder="Kilimanjaro"%}
+  </div>
+ <div class="form-row align-items-center">
+    <div class="col-auto my-1">
+     <div style="color:green;"> <label class="mr-sm-2" for="inlineFormCustomSelect">Number of People</label></div>
+        {% render_field bkform.quantity class="form-control" placeholder="1"%}
+</div>
+</div>
+  <div class="form-group">
+    <div style="color:green;"><label for="exampleInputPassword1">Message</label></div>
+      {% render_field bkform.message class="form-control" placeholder="Hello I need to make a booking to.........."%}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+      </div>
+      </div>
+                        </div>
+
+        </div>
+    </div>
+
+       
+
+
+{% endblock body %}

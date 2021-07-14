@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Faulu Hub Notes Search Results{% endblock title %}
+{% block body %}
+
+<h2>Notes Search results</h2>
+   <section class="latest_news_2" id="latest_news_style_2">
+    <div class="container">
+        <div class="row">
+         {% for notes in object_list  %}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                 <div class="single_item">
+                    <div class="item_wrapper">
+                        <div class="blog-img">
+                           <img src="{{ notes.image.url }}" alt="faulu hub" class="img-fluid">
+                        </div>
+                        <h3><a href="{{ notes.get_absolute_url }}" title="">{{ notes.name }}</a></h3>
+                    </div>
+                    <div class="blog_title">
+                        <ul class="post_bloger">
+                            <li><i class="fas fa-user"></i>{{ notes.form }}</li>
+                            <li><i class="fas fa-book"></i> {{ notes.subject }}</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            {% empty %}
+            <p>There are no results for your search. Kindly re-search<br>
+            and make sure with your keyword and spelling.<br>
+            OR THE CONTENT YOUR SEARCHING IS NOT AVAILABLE Sorry!!! Please<a  href="{% url 'contact' %}">contact us</a> and let us know the content you were searching and missed.</p>
+
+                     <div class="container">
+                            <div class="row">
+                       <form action="{% url 'search_results' %}" method="get">
+                                            <div class="form-group">
+                        <label>Search</label>
+                        <input name="q" type="text" class="form-control" placeholder="Search..............">
+                     <button type="submit" class="btn btn-primary">Search</button>
+
+                      </div>
+                    </form>
+
+                        </div>
+                        </div>
+        {% endfor %}
+
+
+        </div>
+    </div>
+</section><!-- End Our Blog -->
+
+{% endblock body %}
