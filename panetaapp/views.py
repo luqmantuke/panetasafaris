@@ -3,7 +3,7 @@ from destinations.models import Destination
 from blog.models import Post
 # Create your views here.
 def home(request):
-    popular_destination = Destination.objects.filter(popular=True)[0:3]
+    popular_destination = Destination.objects.filter(popular=True)[0:6]
     recent_post = Post.objects.filter(status="Published")[0:3]
     context = {
 
