@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+jiejm2!79qu^hpq4mx+61nsg@gw#4^j!@x1q2bjvzogz#jmob
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['panetasafari.herokuapp.com', 'panetasafari.com']
 
 
 # Application definition
