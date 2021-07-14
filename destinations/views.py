@@ -30,7 +30,7 @@ def destination_list(request):
             user_message = f'Customer "{full_name}" with the email "{email}" just booked a tour to  "{tour_name}" with quantity of {quantity} person/people and left a message "{message}" please contact him as soon as possible.'
             form.save()
             try:
-                send_mail(subject, user_message, settings.EMAIL_HOST_USER, ['tuksimadventures@gmail.com'],
+                send_mail(subject, user_message, settings.EMAIL_HOST_USER, ['panetasafari@gmail.com'],
                           settings.FAIL_SILENTLY)
 
             except BadHeaderError:
@@ -67,7 +67,7 @@ def destination_details(request, slug):
             book_user_message = f'Customer "{book_full_name}" with the email "{book_email}" just booked a tour to " " "{book_tour_name}" with quantity of " "  {book_quantity} person/people and left a message " " "{book_message}" please contact him as soon as possible'
             form.save()
             try:
-                send_mail(book_subject, book_user_message, settings.EMAIL_HOST_USER, ['tuksimadventures@gmail.com'],
+                send_mail(book_subject, book_user_message, settings.EMAIL_HOST_USER, ['panetasafari@gmail.com'],
                           settings.FAIL_SILENTLY)
 
             except BadHeaderError:
